@@ -30,4 +30,29 @@ Running a graph = Materializing
 
 ### A Materialized value can be anything
 
+# Backpressure
+
+One of the fundamental features of Reactive Streams
+Elements flow as response to demand from consumers
+
+Fast consumers: all is well
+Slow consumer: Problem
+* consumer will send a signal to producer to slow down
+
+Backpressure protocol is transparent 
+
+## Reactions to Backpressure
+* try to slow down if possible
+* buffer elements until there's more demand
+* drop down elements from the buffer if it overflows
+* tear down/kill the whole stream (failure)
+
+
+## overflow strategies:
+- drop head = oldest
+- drop tail = newest
+- drop new = exact element to be added = keeps the buffer
+- drop the entire buffer
+- back pressure signal
+- fail
 
